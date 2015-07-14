@@ -1,1 +1,19 @@
-<h1>Home Page</h1>
+<head>
+ <title>Home</title>
+</head>
+
+<header>
+  <p style="font-size: 14px;float:right; margin-right: 15px">User: </p>
+  <h1>HOME PAGE</h1>
+</header>
+
+
+<% Track.all.each do |track| %>
+  <div class = "trackinfo">
+    <h2><%= track.title %> </h2>
+    <p margin: 0px> <%= track.author %><br>
+      <a href="<%= track.url %>" style="font-size:14px;color:grey"><%= track.url %></a>
+    </p>
+  </div>
+<% end %>
+<a href='/songs/new' class='button'>Add New Song</a>
