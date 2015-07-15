@@ -3,17 +3,17 @@
 </head>
 
 <header>
-  <p style="font-size: 14px;float:right; margin-right: 15px">User: </p>
-  <h1>HOME PAGE</h1>
+  <p style="font-size: 18px;float:right; margin-right: 15px">USER: <%= @user.id %> || <%= @user.username %></p>
+  <h1>HOME<img src="/images/music-notes.png"></h1><a href='/songs/new' class='button'>Add New Song</a>
 </header>
 
-
 <% Track.all.each do |track| %>
-  <div class = "trackinfo">
+  <div class = "post">
     <h2><%= track.title %> </h2>
-    <p margin: 0px> <%= track.author %><br>
-      <a href="<%= track.url %>" style="font-size:14px;color:grey"><%= track.url %></a>
-    </p>
+    <p style="margin-bottom: 0px"> <%= track.artist %><br></p>
+    <a href="<%= track.url %>" style="font-size:14px;color:grey"><%= track.url %></a>
+    <br><span style="font-size:18px">User: <%= track.user_id %><br></span>
+    <span class="votes"><%= track.votes%>+</span>
+
   </div>
 <% end %>
-<a href='/songs/new' class='button'>Add New Song</a>

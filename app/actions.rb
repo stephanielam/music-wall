@@ -1,7 +1,5 @@
 configure do
   enable :sessions
-  set :username, 'USER'
-  set :password, 'pass'
 end
 
 get '/' do
@@ -13,8 +11,9 @@ get '/login' do
 end
 
 post '/login' do 
-  if params[:username] == settings.username && params[:password] == settings.password 
-    session[:user] = params[:username]
+  user = User.find_by(username: params[:username])
+  if user && params[:password] == user.password 
+    session[:user] = user.id
     redirect '/songs'
   else
     erb :login
@@ -27,18 +26,22 @@ get '/logout' do
 end
 
 get '/songs' do
+  @user = User.find(session[:user])
   erb :index
 end
 
 get '/songs/new' do
+  @user = User.find(session[:user])
   erb :new
 end
 
 post '/songs' do
- @track = Track.new(
+  @user = User.find(session[:user])
+  @track = Track.new(
     title: params[:title],
-    author: params[:author],
-    url:  params[:url]
+    artist: params[:artist],
+    url: params[:url],
+    user_id: @user.id
   )
   @track.save
   redirect '/songs'

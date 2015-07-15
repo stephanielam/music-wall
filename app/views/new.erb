@@ -5,15 +5,15 @@
 </head>
 
 <header>
-  <p style="font-size: 14px;float:right; margin-right: 15px">User: <% #{session[:username]} %></p>
+  <p style="font-size: 18px;float:right; margin-right: 15px">User: <%= @user.username %></p>
   <h1> ADD NEW TRACK</h1>  
 </header>
 
 <body>
 <form method="post" action="/songs">
   <div>
-    <h2><label>Author:</label></h2>
-    <input type="text" name="author" size="28"><br>
+    <h2><label>Artist:</label></h2>
+    <input type="text" name="artist" size="28"><br>
   </div>
   <div>
     <h2><label>Title:</label></h2>
@@ -21,13 +21,13 @@
   </div>
   <div>
     <h2><label>URL:</label></h2>
-    <input type="text" name="url" size="28"><br>
+    <input type="text" name="url" size="28"><br><br>
   </div>
   <div>
-    <input type="submit" value="Submit" class="button" id="submit" >
+    <input type="submit" value="Submit" class="button" id="submit">
   </div>
+    <a href='/songs' class='button' id= "submit">Return to home</a>
 </form>
-<a href='/songs' class='button' id= "submit">Return to home</a>
 
 
 </body>
